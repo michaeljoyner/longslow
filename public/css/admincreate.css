@@ -1,0 +1,191 @@
+@import url(//fonts.googleapis.com/css?family=Lato:400);
+
+body {
+	padding-top: 3.5em;
+}
+
+form {
+	width: 99%;
+	margin: 0 auto;
+}
+
+.row {
+	margin: 0.5em 0;
+}
+
+#title {
+	font-size: 2em;
+	height: 2.5em;
+}
+
+#cover_pic {
+	display: none;
+}
+
+#cover_pic_upload_box {
+	min-height: 214px;
+	background: url('../../images/bagan.jpg') no-repeat;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	border: 1px solid #ccc;
+	border-left: none;
+	position: relative;
+}
+
+/*#cover_pic_upload_box img {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1000;
+}*/
+
+#cover_pic_upload_box label {
+	position: relative;
+	top: 40%;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	font-size: 2em;
+	color: #FFFFFF;
+	font-family: 'Lato', Ariel, sans-serif;
+	line-height: 180px;
+	z-index: 100;
+}
+
+#wmd-input {
+	width: 100%;
+	resize: none;
+}
+
+#wmd-button-row {
+	width: 100%;
+}
+
+.image_preview {
+	max-width: 250px;
+	max-height: 200px;
+	float: right;
+}
+
+.image_preview img {
+	width: 100%;
+	height: 100%;
+}
+
+#excerpt_box {
+	padding-right: 0;
+}
+
+#excerpt_box textarea {
+	border-radius: 0;
+}
+
+#picture_box {
+	padding-left: 0;
+}
+
+#wmd-preview {
+	position: relative;
+	width: 100%;
+	height: 500px;
+	background-color: #FCFCFC;
+	margin-top: 3em;
+	padding: 1.5em;
+	overflow-Y: auto;
+	overflow-X: hidden;
+	padding-bottom: 3em;
+}
+
+#wmd-preview:before {
+	content: 'Preview';
+	font-size: 1.5em;
+	font-weight: 700;
+	position: absolute;
+	top: -1.5em;
+	left: 45%;
+}
+
+#footbar {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: #242628;
+	margin: 0;
+	padding: 0.3em 0;
+}
+
+
+
+#submit_btn_grp {
+	width: 100%;
+}
+
+#cover_pic_preview {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	/*z-index: -1000;*/
+}
+
+#cover_pic_preview img {
+	width: 100%;
+	height: 100%;
+	z-index: -500;
+}
+
+#imageToUpload {
+	display: none;
+}
+
+#fileUploadLabel {
+	font-size: 1.5em;
+	font-weight: 400;
+	color: #2980B9;
+}
+
+#excerpt_txt {
+	resize: none;
+}
+
+#cover_pic_error {
+	/*display: none;*/
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	/*width: 0;*/
+	-webkit-transition: 1s;
+	opacity: 0;
+	background-color: red;
+	color: white;
+	border-radius: 8px;
+	padding: 0.5em 1em;
+	margin: 1em;
+}
+
+#cover_pic_error.show {
+	opacity: 1;
+	width: auto;
+}
+
+#taglist, #tagaddon, #category, #submitbutton {
+	border-radius: 0;
+}
+
+#submitbutton {
+	background-color: #2980B9;
+	border-color: #2980B6;
+}
+
+#publish_options_list {
+	right: 0;
+}
+
+#publish_options_list li {
+	padding: 0.5em 2em;
+	text-align: center;
+	cursor: pointer;
+}
