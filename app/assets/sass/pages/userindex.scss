@@ -1,0 +1,85 @@
+@import "colors";
+@import "typography";
+
+@import "page_general";
+@import "navbar";
+@import "forms";
+
+.person-box {
+  display: inline-block;
+  width: 20em;
+  min-height: 20em;
+  border: 2px solid $primary_blue;
+  margin: 0 2em;
+  vertical-align: top;
+  font-family: $font_stack_opensans;
+  position: relative;
+}
+
+.person-name {
+  text-align: center;
+  background-color: $primary_blue;
+  color: #fff;
+  padding: 0.5em;
+}
+
+.person-bio {
+  padding: 1em;
+  font-family: $font_stack_opensans;
+}
+
+.person-email {
+  font-size: 90%;
+  color: $primary_blue;
+  padding-left: 1em;
+}
+
+.profile-img-box {
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 4px solid $primary_blue;
+  overflow: hidden;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+}
+
+.action-box {
+  width: 100%;
+  height: 2em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  background-color: $primary_blue;
+  transition: 1s;
+}
+
+.person-box:hover .action-box {
+  display: block;
+  opacity: 0.6;
+}
+
+.profile-edit {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+  padding: 0.25em 2em;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+
+.team-title {
+  text-align: center;
+  font-family: $font_stack_pacifico;
+  text-transform: capitalize;
+  color: $light_gray;
+  margin: 1em auto;
+  border-bottom: 2px solid $light_gray;
+  width: 80%;
+}

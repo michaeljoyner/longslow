@@ -1,0 +1,45 @@
+.user-type-selection {
+  text-align: center;
+}
+
+.user-type-box.active {
+  background-color: $primary_blue;
+}
+
+.user-type-box {
+  display: inline-block;
+  width: 100%;
+  height: 240px;
+  margin: 0.5em 0.5em;
+  background-color: $light_gray;
+}
+
+.user-type-box input {
+  display: none;
+}
+
+.user-role-label {
+  width: 100%;
+}
+
+.user-role-label .user-type-box .role-title {
+  text-align: center;
+  color: $dark_text;
+}
+
+.user-permission-list {
+  color: $dark_text;
+  list-style-type: none;
+  padding-left: 1.5em;
+}
+
+.permission {
+  font-size: 80%;
+  margin-bottom: 0.3em;
+}
+
+.icon-holder {
+  text-align: center;
+  font-size: 4em;
+  color: rgba(0,0,0,0.4);
+}

@@ -1,0 +1,24 @@
+.profile-header {
+  width: 100%;
+  height: 23em;
+  background: url('../../../images/office.jpg') no-repeat center;
+  background-size: cover;
+  position: relative;
+}
+
+.image-box {
+  position: absolute;
+  bottom: -6em;
+  left: 10em;
+  width: 12em;
+  height: 12em;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid $primary_blue;
+  box-shadow: 4px 4px 2px $light_gray;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+}

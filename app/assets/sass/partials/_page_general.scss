@@ -1,0 +1,23 @@
+.createbutton {
+  width: 20em;
+  margin-right: 2em;
+}
+
+.page-title {
+  margin-left: 2em;
+  font-family: $font_stack_pacifico;
+  font-size: 4em;
+  margin-bottom: 0.5em;
+}
+
+.blockbutton {
+  height: 4em;
+  border-radius: 0;
+  margin: 1em 0;
+}
+
+.secondblockbutton {
+  line-height: 3em;
+  border: none;
+  background-color: $light_gray;
+}

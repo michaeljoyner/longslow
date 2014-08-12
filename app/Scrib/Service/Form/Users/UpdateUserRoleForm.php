@@ -8,7 +8,29 @@
 
 namespace Scrib\Service\Form\Users;
 
+use Scrib\Repo\User\UserModelInterface;
+use Scrib\Service\Form\ValidatingForm;
+use Scrib\Service\Validation\ValidableInterface;
 
-class UpdateUserRoleForm {
+class UpdateUserRoleForm extends ValidatingForm {
 
+    protected $validator;
+    protected $user;
+
+    public function __construct(ValidableInterface $validator, UserModelInterface $user){
+        $this->validator = $validator;
+        $this->user = $user;
+    }
+
+    public function save($input)
+    {
+        if( ! $this->valid($input))
+        {
+            return false;
+        }
+
+        $this->user->updateUserRole($input);
+
+        return true;
+    }
 } 

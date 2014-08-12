@@ -8,7 +8,15 @@
 
 namespace Scrib\Service\Form\Users;
 
+use Scrib\Service\Validation\AbstractLaravelValidator;
 
-class UpdateUserRoleLaravelValidator {
+class UpdateUserRoleLaravelValidator extends AbstractLaravelValidator {
 
+    protected $rules = array(
+        'role_id' => 'required|integer|in:1,2,3'
+    );
+
+    protected $messages = array(
+        'role_id' => 'A valid role id needs to be given.'
+    );
 } 

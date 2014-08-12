@@ -8,7 +8,18 @@
 
 namespace Scrib\Service\Form\Users;
 
+use Scrib\Service\Validation\AbstractLaravelValidator;
 
-class ResetPasswordLaravelValidator {
+class ResetPasswordLaravelValidator extends AbstractLaravelValidator {
 
+    protected $rules = array(
+        'old_password' => 'required|min:8',
+        'password'     => 'required|min:8|confirmed'
+    );
+
+    protected $messages = array(
+        'old_password'       => 'Please supply your current password.',
+        'password.min'       => 'Password must be at least 8 characters',
+        'password.confirmed' => 'Passwords does not match confirmation'
+    );
 } 
