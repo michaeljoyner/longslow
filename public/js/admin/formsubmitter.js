@@ -1,6 +1,8 @@
-;(function(w){
+;(function(w, $){
 	var d = w.document;
 	var formSubmitter = {
+        errors: [],
+
 		elems: {
 			form: d.getElementById('articleform'),
 			draft: d.getElementById('draft_save'),
@@ -19,18 +21,61 @@
 
 		saveAsDraft: function() {
 			this.elems.statusflag.value = "2";
-			this.elems.form.submit();
+			this.checkAndSubmit();
 		},
 
 		saveAsPublished: function() {
 			this.elems.statusflag.value = "1";
-			this.elems.form.submit();	
+			this.checkAndSubmit();
 		},
 
 		saveSilently: function() {
 			this.elems.statusflag.value = "3";
-			this.elems.form.submit();
-		}
+			this.checkAndSubmit();
+		},
+
+        checkAndSubmit: function() {
+          if(this.validate()) {
+              this.elems.form.submit();
+          } else {
+              this.showAllErrors();
+          }
+        },
+
+        validate: function() {
+            this.errors = [];
+            var title = d.querySelector('#title');
+            var excerpt = d.querySelector('#excerpt_txt');
+            var body = d.querySelector('#wmd-input');
+            var category = d.querySelector('#category');
+
+            if(title.value.length === 0) {
+                this.errors.push('You need to give the post a tile.');
+            }
+            if(excerpt.value.length === 0) {
+                this.errors.push('Please write a short excerpt for your post');
+            }
+            if(body.value.length === 0) {
+                this.errors.push('You haven\'t added any content to the body of your post');
+            }
+            if(category.value == 0) {
+                this.errors.push('Please select a category for this post.')
+            }
+
+            return (this.errors.length === 0);
+
+        },
+
+        showAllErrors: function() {
+            var i = 0, l = this.errors.length;
+            var modalcontent = d.querySelector('#error_modal .modal-body');
+            modalcontent.innerHTML = '<ul>';
+            for(i;i<l;i++) {
+                modalcontent.innerHTML += '<li>'+ this.errors[i] + '</li>';
+            }
+            modalcontent.innerHTML += '</ul>';
+            $('#error_modal').modal('show')
+        }
 	}
 	w.formSubmitter = formSubmitter;
-}(window));
+}(window, jQuery));

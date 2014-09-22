@@ -7,23 +7,12 @@ class CategoryTableSeeder extends Seeder {
 		DB::table('categories')->truncate();
 
 		Category::create(array(
-			'category' => 'sports',
-			'slug' => 'sports',
+			'category' => 'general',
+			'slug' => 'general',
+            'description' => 'The default category',
+            'cover' => 'images/write.jpg'
 		));
 
-		Category::create(array(
-			'category' => 'news',
-			'slug' => 'news',
-		));
 
-		Category::create(array(
-			'category' => 'business',
-			'slug' => 'business',
-		));
-
-		Category::create(array(
-			'category' => 'entertainment',
-			'slug' => 'entertainment',
-		));
 	}
 }

@@ -7,8 +7,11 @@ class RepoAbstract {
 	 * @param  string $string Human-friendly
 	 * @return string         Computer friendly tag/slug
 	 */
-	protected function slug($string)
+	protected function slug($title, $model)
 	{
-		return filter_var( str_replace(' ', '-', strtolower( trim($string) ) ), FILTER_SANITIZE_URL);
+        $slug = \Str::slug($title);
+        $slugCount = count($model->whereRaw("slug REGEXP '^{$slug}(-[0-9]*)?$'")->get());
+
+        return ($slugCount > 0) ? "{$slug}-{$slugCount}" : $slug;
 	}
 }

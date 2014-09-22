@@ -6,7 +6,7 @@
 	<script src="  {{ asset('js/Markdown.Sanitizer.js')}} "></script>
 	<script src="  {{ asset('js/Markdown.Editor.js')}} "></script>
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/demo.css')}}">
-	<link rel="stylesheet" href="{{ asset('css/admincreate.css') }}">
+	<link rel="stylesheet" href="{{ asset('styles/css/pages/writer.css') }}">
 	@stop
 
 @section('content')
@@ -37,19 +37,14 @@
 		</div>
 	</div>
 	<!-- content and preview -->
-	<div id="writing_area">
-		<div class="row">
-			<div class="col-md-5">
-				 <div class="wmd-panel">
-			          <div id="wmd-button-bar"></div>
-			          <textarea class="wmd-input" id="wmd-input" name="content">{{ Input::old('content') }}</textarea>
-			     </div>
-			</div>
-			<div class="col-md-7">
-				<div id="wmd-preview" class="wmd-panel wmd-preview">
-     			</div>
-			</div>
-		</div>
+	<div class="row" id="writing_area">
+         <div class="col-md-5 wmd-panel">
+              <div id="wmd-button-bar"></div>
+              <textarea class="wmd-input" id="wmd-input" name="content">{{ Input::old('content') }}</textarea>
+              <span class="glyphicon glyphicon-resize-full resizer-icon"></span>
+         </div>
+         <div id="wmd-preview" class="col-md-7 wmd-panel wmd-preview">
+         </div>
 	</div>
 	<!-- footer with category, tags and submit -->
 	<div id="footbar" class="row">
@@ -151,4 +146,48 @@
 		$('#error_modal').modal();
 	</script>
 	@endif
+	<script>
+        var writerResizer = {
+            icon: null,
+
+            isResized: false,
+
+            classBigger: 'resizer-icon glyphicon glyphicon-resize-full',
+            classSmaller: 'resizer-icon glyphicon glyphicon-resize-small',
+
+            init: function() {
+                writerResizer.icon = document.querySelector('.resizer-icon');
+                writerResizer.icon.addEventListener('click', writerResizer.toggle, false);
+            },
+
+            toggle: function() {
+                if(writerResizer.isResized) {
+                    writerResizer.desize();
+                } else {
+                    writerResizer.resize();
+                }
+            },
+
+            resize: function() {
+                var $meta = $('#post_meta_box');
+                var $write = $('#writing_area');
+                var heightDelta = parseInt($meta.css('height'));
+                var writeHeight = parseInt($write.css('height'));
+                $meta.hide();
+                $write.css('height', (writeHeight + heightDelta)+ "px");
+                writerResizer.isResized = true;
+                writerResizer.icon.className = writerResizer.classSmaller;
+            },
+
+            desize: function() {
+                var $meta = $('#post_meta_box');
+                var $write = $('#writing_area');
+                $meta.show();
+                $write.css("height", "");
+                writerResizer.isResized = false;
+                writerResizer.icon.className = writerResizer.classBigger;
+            }
+        };
+        writerResizer.init();
+    </script>
 @stop

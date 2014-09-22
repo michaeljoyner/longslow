@@ -5,7 +5,7 @@ use Intervention\Image\ImageManager;
 
 
 class LaravelCoverImage extends AbstractImage {
-	protected $BASE_FOLDER = 'covers';
+	protected $BASE_FOLDER = '/covers/';
 	protected $cover;
 	protected $imageFactory;
 	protected $MAX_WIDTH = 1280;
@@ -25,7 +25,7 @@ class LaravelCoverImage extends AbstractImage {
 
 		$this->resizeImage($img);
 
-		$img->save($path);
+		$img->save(public_path().$path);
 
 		$coverInstance = $this->cover->create(array(
 			'path' => $this->getUrlPath($path)

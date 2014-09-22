@@ -29,12 +29,12 @@
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		    	<ul class="nav navbar-nav">
+		    	<ul class="nav navbar-nav main-menu">
 		        	<li><a href="{{ route('admin.article.index') }}">Content</a></li>
 		        	<li><a href="{{ route('admin.article.create') }}">New Post</a></li>
 		        	@if( ! Auth::guest() )
 		        	<li><a href="{{ route('user.show', Auth::user()->id) }}">Profile</a></li>
-		        	@if( Auth::user()->role_id === 1 )
+		        	@if( Auth::user()->role_id === 1 || Auth::user()->role_id === 4 )
 		        	<li><a href="{{ route('user.index') }}">Users</a></li>
                     <li><a href="{{ route('admin.category.index') }}">Categories</a> </li>
 		        	@endif
@@ -55,7 +55,12 @@
 	@show
 
 	@yield('content')
-
+    @if(Session::has('flash_message'))
+    	<div class="alert alert-dismissible flash-message">
+    	    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    	    {{ Session::get('flash_message') }}
+        </div>
+    @endif
 	@section('bodyscripts')
 		<script src="{{ asset('js/jquery.min.js') }}"></script>
 		<script src="{{ asset('js/bootstrap.min.js') }}"></script>

@@ -9,14 +9,11 @@
 <div class="profile-header">
 	<div class="image-box">
 		<label for="profile-pic">
-			@if( ! $profile->author->profilepic )
-			<img src="{{ asset('images/me.jpg') }}" alt="profile pic" id="profile-img-preview" class="profile-img">
-			@else
-			<img src="{{ asset($profile->author->profilepic) }}" alt="profile pic" id="profile-img-preview" class="profile-img">
-			@endif
+			<img src="{{ asset($profile->author->getImageSrc()) }}" alt="profile pic" id="profile-img-preview" class="profile-img">
 			<input type="file" name="profile-pic" id="profile-pic">
 		</label>
 	</div>
+	<p id="error-message" class="error-message"></p>
 </div>
 {{ Form::open(array('method' => 'PUT', 'route' => array('user.update', Auth::user()->id), 'id' => 'profileform', 'class' => 'admin-form form-horizontal')) }}
 	{{ Form::textField('fullname', 'name', $profile->author->fullname) }}
@@ -45,10 +42,9 @@
 
 			handleSelect: function(ev) {
 				if(ev.target.files[0].type.indexOf('image') !== 0) {
-					console.log('not a pic');
+					profileImageHandler.errorMessage.showMessage("Sorry, that is not an acceptable image type.", false);
 				} else {
-					console.log('thats a pic!');
-					profileImageHandler.processImage(ev.target.files[0]);	
+					profileImageHandler.processImage(ev.target.files[0]);
 				}
 			},
 
@@ -86,9 +82,36 @@
 				req.open("POST", '/admin/profileimageupload', true);
 				// req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 				req.onload = function(ev) {
-					console.log(ev.target.response);
+					if(ev.target.status === 200) {
+					    profileImageHandler.errorMessage.showMessage("Profile image successfully updated", true);
+					} else {
+					    profileImageHandler.errorMessage.showMessage("Failed: " + ev.target.responseText, false);
+					}
 				}
 				req.send(fd);
+			},
+
+			errorMessage: {
+			    elems: {
+			        container: document.querySelector('#error-message')
+			    },
+
+			    showMessage: function(message, success) {
+			        profileImageHandler.errorMessage.elems.container.innerHTML = message;
+			        if(success) {
+			            profileImageHandler.errorMessage.elems.container.classList.add('success');
+			        } else {
+			            profileImageHandler.errorMessage.elems.container.classList.add('failure');
+			        }
+			        profileImageHandler.errorMessage.elems.container.style.width = "30em";
+			        var timer = window.setTimeout(profileImageHandler.errorMessage.hideMessage, 3000);
+			    },
+
+			    hideMessage: function() {
+			        profileImageHandler.errorMessage.elems.container.className = 'error-message';
+			        profileImageHandler.errorMessage.elems.container.style.width = '0';
+			        profileImageHandler.errorMessage.elems.container.innerHTML = "";
+			    }
 			}
 		}
 		profileImageHandler.init();

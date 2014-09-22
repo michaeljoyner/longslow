@@ -4,7 +4,35 @@
 @import "navbar";
 @import "forms";
 @import "profile_header";
+@import "page_general";
+@import "partials/flashmessage";
 
 #profile-pic {
   display: none;
+}
+
+.error-message {
+  transition: .5s;
+  width: 0;
+  position: absolute;
+  bottom: -3.5em;
+  left: 15em;
+  height: 2em;
+  line-height: 2em;
+  font-family: $font_stack_opensans;
+  font-weight: 700;
+  color: $white;
+  padding-left: 5.5em;
+  padding-right: 1em;
+  z-index: -500;
+  text-align: right;
+  border-bottom-right-radius: 1em;
+}
+
+.error-message.success {
+    background-color: $navbar_red;
+}
+
+.error-message.failure {
+  background-color: $flat_red;
 }

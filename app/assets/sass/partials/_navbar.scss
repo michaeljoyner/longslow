@@ -35,3 +35,7 @@ body {
   #bs-example-navbar-collapse-1 ul li.active a {
     background-color: $navbar_secondry;
   }
+
+  #main-nav li:hover a {
+    color: $navbar_secondry;
+  }

@@ -51,7 +51,7 @@ class CacheDecorator extends AbstractArticleDecorator {
 		return $article;
 	}
 
-	public function byPage($page=1, $limit=10)
+	public function byPage($page=1, $limit=10, $drafts=1, $useronly=false)
 	{
 		$key = md5('key.'.$page.'.'.$limit);
 
@@ -60,7 +60,7 @@ class CacheDecorator extends AbstractArticleDecorator {
 			return $this->cache->get($key);
 		}
 
-		$paginated = $this->nextArticle->byPage($page, $limit);
+		$paginated = $this->nextArticle->byPage($page, $limit, $drafts, $useronly);
 
 		$this->cache->put($key, $paginated);
 
@@ -98,4 +98,9 @@ class CacheDecorator extends AbstractArticleDecorator {
 
 		return $paginated;
 	}
+
+    public function getStats()
+    {
+        return $this->nextArticle->getStats();
+    }
 }

@@ -14,7 +14,7 @@ class UpdateArticlesTable extends Migration {
 	{
 		Schema::table('articles', function(Blueprint $table)
 		{
-			$table->integer('cover_id')->unsigned();
+			$table->integer('cover_id')->unsigned()->nullable();
 		});
 	}
 

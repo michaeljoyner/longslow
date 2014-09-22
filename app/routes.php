@@ -21,6 +21,19 @@ Route::resource('session', 'SessionController');
 //All admin routes filtered with auth
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
+    Route::get('article/drafts', array(
+        'as' => 'article.drafts',
+        'uses' => 'ArticleController@allDrafts'
+    ));
+    Route::get('article/published', array(
+        'as' => 'article.published',
+        'uses' => 'ArticleController@allPublished'
+    ));
+    Route::get('article/useronly', array(
+        'as' => 'article.useronly',
+        'uses' => 'ArticleController@allUsersArticles'
+    ));
+
 	Route::resource('article', 'ArticleController');
     // User, Profile and Author functions dealt with by UserController
     Route::get('user', array(

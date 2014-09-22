@@ -9,3 +9,11 @@ Thumbs.db
 mrwriter.sublime-project
 mrwriter.sublime-workspace
 _ide_helper.php
+/.idea
+/.sass-cache
+/node_modules
+/public/category_pic/*
+/public/categorypics/*
+/public/covers/*
+/public/profile/*
+/public/content/*

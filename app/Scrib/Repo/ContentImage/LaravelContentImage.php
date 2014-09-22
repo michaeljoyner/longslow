@@ -3,7 +3,7 @@
 use Intervention\Image\ImageManager;
 
 class LaravelContentImage extends AbstractImage {
-	protected $BASE_FOLDER = 'content';
+	protected $BASE_FOLDER = '/content/';
 	protected $MAX_WIDTH = 600;
 	protected $MAX_HEIGHT = 400;
 	protected $imageFactory;
@@ -20,7 +20,7 @@ class LaravelContentImage extends AbstractImage {
 
 		$this->resizeImage($img);
 
-		$img->save($path);
+		$img->save(public_path().$path);
 
 		return $this->getUrlPath($path);
 	}

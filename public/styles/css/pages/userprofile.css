@@ -11,14 +11,14 @@ body {
 }
 
 #main-nav dropdown-menu {
-  background-color: #e67e22;
+  background-color: #479e88;
   text-align: center;
 }
 #main-nav .dropdown-menu li a:focus {
-  background-color: #e67e22;
+  background-color: #479e88;
 }
 #main-nav .dropdown-menu li a:hover {
-  background-color: #e67e22;
+  background-color: #479e88;
 }
 #main-nav a {
   color: #FFFFFF;
@@ -28,7 +28,11 @@ body {
 }
 
 #bs-example-navbar-collapse-1 ul li.active a {
-  background-color: #e67e22;
+  background-color: #479e88;
+}
+
+#main-nav li:hover a {
+  color: #479e88;
 }
 
 .admin-form {
@@ -105,6 +109,75 @@ body {
   height: 100%;
 }
 
+.createbutton {
+  width: 20em;
+  margin-right: 2em;
+}
+
+.title-header {
+  padding-right: 2em;
+}
+
+.page-title {
+  margin-left: 2em;
+  font-family: "Pacifico", cursive;
+  font-size: 4em;
+  margin-bottom: 0.5em;
+}
+
+.blockbutton {
+  height: 4em;
+  border-radius: 0;
+  margin: 1em 0;
+  background-color: #479e88;
+  border-color: #a2ded0;
+}
+
+.secondblockbutton {
+  line-height: 3em;
+  border: none;
+  background-color: #c5c5c5;
+}
+
+.flash-message {
+  position: fixed;
+  width: 15em;
+  height: 15em;
+  background-color: #fed700;
+  bottom: 0;
+  left: 2em;
+  font-family: "Open Sans", Helvetica, Ariel, sans-serif;
+  color: #333333;
+  font-weight: 600;
+}
+
 #profile-pic {
   display: none;
+}
+
+.error-message {
+  -webkit-transition: .5s;
+          transition: .5s;
+  width: 0;
+  position: absolute;
+  bottom: -3.5em;
+  left: 15em;
+  height: 2em;
+  line-height: 2em;
+  font-family: "Open Sans", Helvetica, Ariel, sans-serif;
+  font-weight: 700;
+  color: white;
+  padding-left: 5.5em;
+  padding-right: 1em;
+  z-index: -500;
+  text-align: right;
+  border-bottom-right-radius: 1em;
+}
+
+.error-message.success {
+  background-color: #a2ded0;
+}
+
+.error-message.failure {
+  background-color: #e74c3c;
 }

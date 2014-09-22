@@ -1,9 +1,11 @@
 <?php namespace Scrib\Repo\Article;
 
+use Auth;
 use Scrib\Repo\Tag\TagInterface;
 use Scrib\Repo\Category\CategoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Scrib\Repo\RepoAbstract;
+use StdClass;
 
 class EloquentArticle extends RepoAbstract implements ArticleInterface {
 
@@ -30,26 +32,58 @@ class EloquentArticle extends RepoAbstract implements ArticleInterface {
      * Get paginated articles
      * @param  integer $page Current page
      * @param  integer $limit Number of articles per page
+     * @param int $drafts flag to include or return only drafts
+     * @param bool $useronly show only users posts
      * @return StdClass         Object with $itmes and $totalItems for pagination
      */
-    public function byPage($page = 1, $limit = 10)
+    public function byPage($page = 1, $limit = 10, $drafts = 1, $useronly=false)
     {
-        $result = new \StdClass;
+        $result = new StdClass;
         $result->page = $page;
         $result->limit = $limit;
         $result->totalItems = 0;
         $result->items = array();
 
-        $articles = $this->article->with('tags', 'category', 'cover', 'author.author')
-                                  ->where('status_id', 1)
-                                  ->orderBy('updated_at', 'desc')
-                                  ->skip($limit * ($page - 1))
-                                  ->take($limit)
-                                  ->get();
+        $query = $this->article->with('tags', 'category', 'cover', 'author.author');
+        if ($drafts == 0)
+        {
+            $query->where('status_id', 1);
+        }
+        else
+        {
+            if ($drafts == 2)
+            {
+                $query->where('status_id', 2);
+            }
+        }
+        if($useronly)
+        {
+            $query->where('user_id', \Auth::user()->id);
+        }
+        $articles = $query->orderBy('updated_at', 'desc')
+                          ->skip($limit * ($page - 1))
+                          ->take($limit)
+                          ->get();
 
         //Create object to return data useful for pagination
         $result->items = $articles->all();
-        $result->totalItems = $this->totalArticles();
+        switch($drafts) {
+            case 0:
+                $result->totalItems = $this->totalArticles();
+                break;
+            case 1:
+                $result->totalItems = $this->totalArticlesAll();
+                break;
+            case 2:
+                $result->totalItems = $this->totalDrafts();
+                break;
+            default:
+                $result->totalItems = $this->totalArticles();
+        }
+        if($useronly)
+        {
+            $result->totalItems = $this->totalByCurrentUser();
+        }
 
         return $result;
     }
@@ -78,7 +112,7 @@ class EloquentArticle extends RepoAbstract implements ArticleInterface {
     {
         $foundTag = $this->tag->bySlug($tag);
 
-        $result = new \StdClass;
+        $result = new StdClass;
         $result->page = $page;
         $result->limit = $limit;
         $result->totalItems = 0;
@@ -112,7 +146,7 @@ class EloquentArticle extends RepoAbstract implements ArticleInterface {
     {
         $foundCategory = $this->category->byCategory($category)->first();
 
-        $result = new \StdClass;
+        $result = new StdClass;
         $result->page = $page;
         $result->limit = $limit;
         $result->totalItems = 0;
@@ -154,7 +188,7 @@ class EloquentArticle extends RepoAbstract implements ArticleInterface {
             'status_id'   => $data['status_id'],
             'category_id' => $data['category_id'],
             'title'       => $data['title'],
-            'slug'        => $this->slug($data['title']),
+            'slug'        => $this->slug($data['title'], $this->article),
             'excerpt'     => $data['excerpt'],
             'content'     => $data['content'],
             'cover_id'    => isset($data['cover_id']) ? $data['cover_id'] : null
@@ -195,7 +229,7 @@ class EloquentArticle extends RepoAbstract implements ArticleInterface {
         $article->status_id = $data['status_id'];
         $article->category_id = $data['category_id'];
         $article->title = $data['title'];
-        $article->slug = $this->slug($data['title']);
+        $article->slug = $this->slug($data['title'], $this->article);
         $article->excerpt = $data['excerpt'];
         $article->content = $data['content'];
 
@@ -217,6 +251,16 @@ class EloquentArticle extends RepoAbstract implements ArticleInterface {
     {
         $article = $this->article->find($id);
         return $article->delete();
+    }
+
+    public function getStats()
+    {
+        $stats = new StdClass;
+        $stats->published = $this->totalArticles();
+        $stats->drafts = $this->totalDrafts();
+        $stats->byUser = $this->totalByCurrentUser();
+
+        return $stats;
     }
 
     /**
@@ -248,6 +292,11 @@ class EloquentArticle extends RepoAbstract implements ArticleInterface {
         return $this->article->where('status_id', 1)->count();
     }
 
+    protected function totalArticlesAll()
+    {
+        return $this->article->count();
+    }
+
     /**
      * Get total articles count per tag
      * @param  string $tag Tag slug
@@ -274,6 +323,17 @@ class EloquentArticle extends RepoAbstract implements ArticleInterface {
                               ->count();
     }
 
+    protected function totalDrafts()
+    {
+        return $this->article->where('status_id', 2)->count();
+    }
+
+    protected function totalByCurrentUser()
+    {
+        $userId = Auth::user()->id;
+        return $this->article->where('user_id', $userId)->count();
+    }
+
     protected function createTagArray($tagString)
     {
         $tagString = $tagString === '' ? 'general' : $tagString;
@@ -285,4 +345,6 @@ class EloquentArticle extends RepoAbstract implements ArticleInterface {
         }
         return $tags;
     }
+
+
 }

@@ -11,7 +11,7 @@
 @stop
 
 @section('content')
-    <div class="clearfix">
+    <div class="clearfix title-header">
         <h1 class="page-title pull-left">Categories</h1>
         <a href="{{ route('admin.category.create') }}"><button class="btn btn-danger blockbutton createbutton pull-right">Add new category</button></a>
     </div>

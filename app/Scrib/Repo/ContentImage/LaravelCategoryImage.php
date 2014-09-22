@@ -12,7 +12,7 @@ namespace Scrib\Repo\ContentImage;
 use Intervention\Image\ImageManager;
 
 class LaravelCategoryImage extends AbstractImage {
-    protected $BASE_FOLDER = 'category_pic';
+    protected $BASE_FOLDER = '/categorypics/';
     protected $MAX_WIDTH = 800;
     protected $MAX_HEIGHT = 600;
     private $imageFactory;
@@ -29,7 +29,8 @@ class LaravelCategoryImage extends AbstractImage {
 
         $this->resizeImage($img);
 
-        $img->save($path);
+//        $img->save($path);
+        $img->save(public_path().$path);
 
         return $this->getUrlPath($path);
     }

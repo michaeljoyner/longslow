@@ -46,7 +46,7 @@ class EloquentCategory extends RepoAbstract implements CategoryInterface {
     {
         $category = $this->category->create(array(
                 'category'    => $data['category'],
-                'slug'        => $this->slug($data['category']),
+                'slug'        => $this->slug($data['category'], $this->category),
                 'description' => $data['description'],
                 'cover'       => $data['cover_path']
             )
@@ -70,7 +70,7 @@ class EloquentCategory extends RepoAbstract implements CategoryInterface {
         }
 
         $category->category = $data['category'];
-        $category->slug = $this->slug($data['category']);
+        $category->slug = $this->slug($data['category'], $this->category);
         $category->description = $data['description'];
         if ( ! empty($data['cover_path']))
         {

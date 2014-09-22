@@ -54,10 +54,10 @@ Form::macro('passwordWithConfirmation', function ($name, $label)
 {
     $html = '<div class="form-group"><label class="col-sm-3 text-right" for="' . $name . '">' . $label . '</label><div class="col-sm-9">';
     $html .= Form::password($name, ['id' => $name]);
-    $html .= '</div></div>';
+    $html .= '<span id="password-report"></span></div></div>';
     $html .= '<div class="form-group"><label class="col-sm-3 text-right" for="' . $name . '_confirmation">Confirm ' . $label . '</label><div class="col-sm-9">';
     $html .= Form::password($name . '_confirmation', ['id' => $name . '_confirmation']);
-    $html .= '</div></div>';
+    $html .= '<span id="password-confirm-report"></span></div></div>';
 
     return $html;
 });

@@ -9,13 +9,15 @@ interface ArticleInterface {
 	 */
 	public function byId($id);
 
-	/**
-	 * Get paginated articles
-	 * @param  integer $page  Current Page
-	 * @param  integer $limit No of articles per page
-	 * @return object         Object with $items and $totalItems for pagination
-	 */
-	public function byPage($page=1, $limit=10);
+    /**
+     * Get paginated articles
+     * @param  integer $page Current Page
+     * @param  integer $limit No of articles per page
+     * @param int $drafts flag to include or return only drafts
+     * @param bool $useronly show only users posts
+     * @return object         Object with $items and $totalItems for pagination
+     */
+	public function byPage($page=1, $limit=10, $drafts = 1, $useronly=false);
 
 	/**
 	 * Get single article by url

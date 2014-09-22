@@ -14,7 +14,7 @@ class Author extends Eloquent {
 	{
 		if( ! $this->profilepic || ! file_exists(public_path().$this->profilepic) )
 		{
-			return '/images/me.jpg';
+			return '/images/blankuser.png';
 		}
 		else {
 			return $this->profilepic;

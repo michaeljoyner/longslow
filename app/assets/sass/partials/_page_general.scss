@@ -3,6 +3,10 @@
   margin-right: 2em;
 }
 
+.title-header {
+  padding-right: 2em;
+}
+
 .page-title {
   margin-left: 2em;
   font-family: $font_stack_pacifico;
@@ -14,6 +18,8 @@
   height: 4em;
   border-radius: 0;
   margin: 1em 0;
+  background-color: $navbar_secondry;
+  border-color: $navbar_red;
 }
 
 .secondblockbutton {

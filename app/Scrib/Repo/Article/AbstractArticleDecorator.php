@@ -14,9 +14,9 @@ abstract class AbstractArticleDecorator implements ArticleInterface {
 		return $this->nextArticle->byId($id);
 	}
 
-	public function byPage($page=1, $limit=10)
+	public function byPage($page=1, $limit=10, $drafts=1, $useronly=false)
 	{
-		return $this->nextArticle->byPage($page=1, $limit=10);
+		return $this->nextArticle->byPage($page=1, $limit=10, $drafts=1, $useronly=false);
 	}
 
 	public function bySlug($slug)
@@ -43,4 +43,9 @@ abstract class AbstractArticleDecorator implements ArticleInterface {
 	{
 		return $this->nextArticle->update($data);
 	}
+
+    public function destroy($id)
+    {
+        return $this->nextArticle->destroy($id);
+    }
 }

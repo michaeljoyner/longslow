@@ -1,0 +1,119 @@
+@import "variables/colors";
+@import "variables/typography";
+
+@import "partials/navbar";
+@import "partials/flashmessage";
+
+html {
+  height: 100%;
+}
+body {
+  padding-top: 3.5em;
+  height: 100%;
+}
+
+.article_card {
+  padding: 1em;
+  padding-bottom: 0.25em;
+  border: 1px solid $super_light_grey;
+  box-shadow: 2px 2px 2px $light_gray;
+  margin-top: 1em;
+  position: relative;
+  font-family: $font_stack_opensans;
+}
+
+.article_card hr {
+  width: 90;
+  margin: 0.5em auto;
+}
+
+.article-title {
+  margin-top: 0;
+}
+
+.category-box {
+  position: absolute;
+  top: 0;
+  right: 1em;
+}
+
+.article-category {
+  padding: 0.15em 0.25em;
+  color: $flat_red;
+  display: inline-block;
+  width: 12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.article-date {
+  margin-bottom: 0.25em;
+  color: $lighter_grey;
+  font-size: 90%;
+}
+
+.actions {
+  position: absolute;
+  bottom: 0.25em;
+  right: 1.5em;
+}
+
+#contentlist {
+  height: 100%;
+  overflow-Y: auto;
+  overflow-X: hidden;
+}
+
+.article_card .error_message {
+  background-color: rgba(255,0,0,0.5);
+  color: $white;
+  padding: 5px;
+  padding-left: 1em;
+  width: 60%;
+  border-radius: 5px;
+}
+
+.page-alert {
+  margin-top: 2em;
+}
+
+.stats {
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    height: 8em;
+    width: 100%;
+    font-family: $font_stack_opensans;
+    padding: 0.5em;
+    color: $dark_text;
+    border: 1px solid $light_gray;
+
+    p:first-child {
+      font-family: $font_stack_pacifico;
+      font-size: 150%;
+      color: $light_gray;
+    }
+
+    p:nth-child(2) {
+      font-size: 120%;
+      color: $navbar_secondry;
+    }
+  }
+}
+
+.stat-number {
+  font-size: 2.5em;
+}
+
+#sidebar a:hover {
+  text-decoration: none;
+}
+
+.sidebar-heading {
+  text-align: center;
+  font-size: 3em;
+  color: $navbar_secondry;
+  font-family: $font_stack_opensans;
+}
+

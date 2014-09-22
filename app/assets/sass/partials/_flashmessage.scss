@@ -1,0 +1,11 @@
+.flash-message {
+  position: fixed;
+  width: 15em;
+  height: 15em;
+  background-color: $alert_yellow;
+  bottom: 0;
+  left: 2em;
+  font-family: $font_stack_opensans;
+  color: $dark_text;
+  font-weight: 600;
+}

@@ -31,7 +31,7 @@ class EloquentAuthor extends RepoAbstract implements AuthorInterface {
 	{
 		$newauthor = $this->author->create(array(
 			'fullname' => $data['fullname'],
-			'slug' => $this->slug($data['fullname']),
+			'slug' => $this->slug($data['fullname'], $this->author),
 			'bio' => $data['bio'],
 			'user_id' => $data['user_id']
 		));
@@ -54,7 +54,7 @@ class EloquentAuthor extends RepoAbstract implements AuthorInterface {
 		}
 
 		$author->fullname = $data['fullname'];
-		$author->slug = $this->slug($data['fullname']);
+		$author->slug = $this->slug($data['fullname'], $this->author);
 		$author->bio = $data['bio'];
 		$author->save();
 

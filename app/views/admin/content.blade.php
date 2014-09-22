@@ -6,7 +6,7 @@
 
 @section('head')
 @parent
-	<link rel="stylesheet" href="{{ asset('css/admincontent.css') }}">
+	<link rel="stylesheet" href="{{ asset('styles/css/pages/content.min.css') }}">
 @stop
 
 @section('bodyheader')
@@ -16,13 +16,30 @@
 @section('content')
 	<div class="container-fluid">
 		<div id="sidebar" class="col-sm-4">
-			
+		    <a href="{{ route('admin.article.index') }}"><h3 class="sidebar-heading">{{ ($stats->published + $stats->drafts) }} POSTS</h3></a>
+		    	<ul class="stats">
+		    	    <a href="{{ route('article.published') }}"><li>
+		    	        <p>Published</p>
+		    	        <p><span class="stat-number">{{$stats->published}}</span> articles</p>
+		    	    </li></a>
+		    	    <a href="{{ route('article.drafts') }}"><li>
+		    	        <p>Drafts</p>
+		    	        <p><span class="stat-number">{{$stats->drafts}}</span> articles</p>
+		    	    </li></a>
+		    	    <a href="{{ route('article.useronly') }}"><li>
+		    	        <p>Written by You</p>
+		    	        <p><span class="stat-number">{{$stats->byUser}}</span> articles</p>
+		    	    </li></a>
+		    	    </ul>
 		</div>
 		<div id="contentlist" class="col-sm-8">
+		    @if($articles->count() === 0)
+		        <div class="alert alert-warning page-alert" role="alert">There are no articles to display.</div>
+		    @endif
 			@foreach($articles as $article)
 				<div class="row">
 					<article class="article_card" id="article_card{{ $article->id }}">
-						<h2 class="article-title">{{ $article->title }}</h2>
+						<h2 class="article-title">@if($article->status_id == 2) [DRAFT] @endif {{ $article->title }}</h2>
 						<p class="article-excerpt">{{ $article->excerpt }}</p>
 						<div class="category-box"><span class="article-category">{{ $article->category->category }}</span></div>
 						<hr>
@@ -61,6 +78,8 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+	{{--flash messages--}}
+
 @stop
 
 @section('bodyscripts')

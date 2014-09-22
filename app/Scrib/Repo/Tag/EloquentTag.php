@@ -43,7 +43,7 @@ class EloquentTag extends RepoAbstract implements TagInterface {
 		foreach ($tags as $tag) {
 			$returnTags[] = $this->tag->create(array(
 										'tag' => $tag,
-										'slug' => $this->slug($tag),
+										'slug' => $this->slug($tag, $this->tag),
 									));
 		}
 

@@ -21,7 +21,7 @@ abstract class AbstractImage implements ImageInterface {
 	}
 
 	protected function getBasePath() {
-		return public_path($this->BASE_FOLDER.'\\');
+		return $this->BASE_FOLDER;
 	}
 
 	protected function getFinalPathAndName($data)
@@ -33,7 +33,7 @@ abstract class AbstractImage implements ImageInterface {
 		$newname = $prefix.'_'.$name;
 
 		$finalPath = $newpath.$newname;
-        $finalPath = str_replace('/', '\\', $finalPath);
+//        $finalPath = str_replace('/', '\\', $finalPath);
 
 		return $finalPath;
 	}
