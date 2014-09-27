@@ -35,10 +35,10 @@ class RepoServiceProvider extends ServiceProvider {
 		$app->bind('Scrib\Repo\Article\ArticleInterface', function($app) {
 			$article = new EloquentArticle( new Article, $app->make('Scrib\Repo\Tag\TagInterface'), $app->make('Scrib\Repo\Category\CategoryInterface'));
 
-			if( $app->env !== 'local' )
-			{
-				$article = new CacheDecorator( $article, new LaravelCache($app['cache'], 'articles', 10));
-			}
+//			if( $app->env !== 'local' )
+//			{
+//				$article = new CacheDecorator( $article, new LaravelCache($app['cache'], 'articles', 10));
+//			}
 
 			return $article;
 		});
