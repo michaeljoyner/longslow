@@ -21,6 +21,8 @@ Route::resource('session', 'SessionController');
 //All admin routes filtered with auth
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
+    Route::get('/', 'ArticleController@index');
+
     Route::get('article/drafts', array(
         'as' => 'article.drafts',
         'uses' => 'ArticleController@allDrafts'

@@ -25,15 +25,16 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		$pagiData = $this->article->byPage();
+        $page = Input::get('page', 1);
+		$pagiData = $this->article->byPage($page);
 		$articles = Paginator::make($pagiData->items, $pagiData->totalItems, 10);
-		return View::make('hello')->with('articles', $articles);
+		return View::make('front.index')->with('articles', $articles);
 	}
 
 	public function showArticle($slug)
 	{
 		$article = $this->article->bySlug($slug);
-		return View::make('single')->with('article', $article);
+		return View::make('front.single')->with('article', $article);
 	}
 
 }

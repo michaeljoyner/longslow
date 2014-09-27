@@ -1,0 +1,135 @@
+@import "variables/colors";
+@import "variables/typography";
+
+@import "mixins/media";
+
+@import "partials/frontgeneral";
+
+body {
+  margin:0;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-family: $font_stack_playfair;
+  text-align: left;
+}
+
+.page-footer {
+  clear: both;
+  height: 50px;
+}
+
+.fixed-header {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  box-shadow: 0px 3px 6px $dark_text;
+  top: 0;
+  background-color: $white;
+  z-index: 200;
+}
+
+.fixed-header h3 {
+  margin: 0 1em;
+  font-size: 2em;
+  @include respond-to(phone) {font-size: 1.5em;}
+}
+
+.cover-img-container img {
+  width: 100%;
+  height: 100%;
+}
+
+.article {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+
+  a, a:visited {
+    color: $crimson;
+    text-decoration: underline;
+  }
+}
+
+.content-body {
+  font-size: 1.5em;
+  line-height: 37px;
+  text-align: left;
+  padding: 0 10px;
+  @include respond-to(phone) {font-size: 1.2em; padding: 0 10px;}
+}
+
+.content-body p img {
+  display: block;
+  max-width: 80%;
+  max-height: 550px;
+  margin: 2em auto;
+  @include respond-to(phone) {max-width: 100%;}
+  @include respond-to(smalltablet) {max-width: 100%;}
+}
+
+.article-title {
+  font-size: 3em;
+  margin: 1em 0;
+  @include respond-to(phone) {font-size: 2em;}
+}
+
+.article-details {
+  position: relative;
+  text-align: left;
+  padding: 0 2em;
+}
+
+.date-box {
+  width: 30%;
+  display: inline-block;
+  @include respond-to(phone) {width: 100%; margin-bottom: 0.5em;}
+  @include respond-to(smalltablet) {width: 100%; margin-bottom: 0.5em;}
+}
+
+.article-details i {
+  color: $crimson;
+}
+
+.pub-date {
+  padding-left: 2em;
+}
+
+.tag-box {
+  float: right;
+  @include respond-to(phone) {width: 100%; float: none;}
+  @include respond-to(smalltablet) {width: 100%; float: none;}
+}
+
+.tags {
+  padding-left: 1em;
+}
+
+.authorship {
+  margin: 3em 0;
+  margin-bottom: 5em;
+  clear: both;
+  padding: 0 10px;
+}
+
+.authorship img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  float: left;
+  @include respond-to(phone) {width: 150px; height: 150px; float: none;}
+  @include respond-to(smalltablet) {width: 150px; height: 150px;}
+}
+
+.author-name {
+  float: right;
+  width: 60%;
+  font-size: 1.4em;
+  @include respond-to(phone) {width: 100%; float: none;}
+}
+
+.author-bio {
+  width: 60%;
+  font-size: 1.2em;
+  float: right;
+  @include respond-to(phone) {width: 100%; float: none; padding: 0 10px;}
+}

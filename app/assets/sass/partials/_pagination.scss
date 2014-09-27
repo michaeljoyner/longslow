@@ -1,0 +1,24 @@
+.pagination {
+  list-style-type: none;
+
+  li {
+    display: none;
+    padding: 10px;
+    font-size: 1.5em;
+    color: $crimson;
+    text-decoration: underline;
+  }
+
+  li:last-child {
+    display: inline-block;
+  }
+
+  li:first-child {
+    display: inline-block;
+  }
+
+  li.disabled {
+    display: none;
+  }
+}
+
