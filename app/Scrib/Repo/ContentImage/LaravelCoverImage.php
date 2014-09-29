@@ -25,7 +25,7 @@ class LaravelCoverImage extends AbstractImage {
 
 		$this->resizeImage($img);
 
-		$img->save(public_path().$path);
+		$img->save(public_path().$path, 80);
 
 		$coverInstance = $this->cover->create(array(
 			'path' => $this->getUrlPath($path)

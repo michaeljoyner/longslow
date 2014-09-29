@@ -12,7 +12,7 @@
         width: 100%;
         height: 22em;
         @if($article->cover['path'])
-        background: url({{ $article->cover['path'] }}) no-repeat;
+        background: url({{ asset($article->cover['path']) }}) no-repeat;
         background-size: cover;
         background-position: 0 50%;
         @endif

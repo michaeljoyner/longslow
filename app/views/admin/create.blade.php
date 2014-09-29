@@ -49,12 +49,17 @@
 	<!-- footer with category, tags and submit -->
 	<div id="footbar" class="row">
 		<div id="category_container" class="col-md-2">
+		    @if($categories->count() === 1)
+		        <span class="category-label">{{ $categories[0]->category }}</span>
+		        <input type="hidden" name="category_id" value="{{ $categories[0]->id }}"/>
+		    @else
 			<select name="category_id" id="category" class="form-control">
 				<option value="0">Category</option>
 				@foreach($categories as $category)
 					<option value="{{ $category->id }}">{{ $category->category }}</option>
 				@endforeach
 			</select>
+			@endif
 		</div>
 		<div id="tags_container" class="col-md-8">
 			<div class="input-group">

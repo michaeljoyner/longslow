@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'HomeController@showWelcome');
+Route::get('/articles/{slug}', 'HomeController@showArticle');
+
 //Session routes
 Route::get('/logout', array(
     'as' => 'logout',
@@ -96,4 +98,3 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     ));
 });
 
-Route::get('/{slug}', 'HomeController@showArticle');

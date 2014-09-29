@@ -17,7 +17,7 @@
     @foreach($articles as $article)
         <section class="article">
             <p class="published"><span>{{ $article->updated_at->toFormattedDatestring() }}</span></p>
-            <h2 class="post-title"><a href="{{ url($article->slug) }}">{{ $article->title }}</a></h2>
+            <h2 class="post-title"><a href="{{ url('/articles/'.$article->slug) }}">{{ $article->title }}</a></h2>
             <p class="excerpt">{{ $article->excerpt }}</p>
         </section>
     @endforeach

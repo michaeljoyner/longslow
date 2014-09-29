@@ -229,7 +229,7 @@ class EloquentArticle extends RepoAbstract implements ArticleInterface {
         $article->status_id = $data['status_id'];
         $article->category_id = $data['category_id'];
         $article->title = $data['title'];
-        $article->slug = $this->slug($data['title'], $this->article);
+//        $article->slug = $this->slug($data['title'], $this->article);
         $article->excerpt = $data['excerpt'];
         $article->content = $data['content'];
 

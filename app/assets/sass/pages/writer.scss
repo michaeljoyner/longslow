@@ -207,3 +207,14 @@ form {
   text-align: center;
   cursor: pointer;
 }
+
+.category-label {
+  font-size: 1.5em;
+  font-family: inherit;
+  border: 2px solid $navbar_secondry;
+  padding: 3px 1em;
+  border-radius: 8px;
+  color: $white;
+  position: relative;
+  top: 4px;
+}
