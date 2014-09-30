@@ -51,6 +51,7 @@ body {
 .fixed-header h3 {
   margin: 0 1em;
   font-size: 2em;
+  line-height: 50px;
 }
 @media only screen and (max-width: 360px) {
   .fixed-header h3 {
