@@ -51,7 +51,7 @@
 		<div id="category_container" class="col-md-2">
 		    @if($categories->count() === 1)
 		        <span class="category-label">{{ $categories[0]->category }}</span>
-		        <input type="hidden" name="category_id" value="{{ $categories[0]->id }}"/>
+		        <input type="hidden" id="category" name="category_id" value="{{ $categories[0]->id }}"/>
 		    @else
 			<select name="category_id" id="category" class="form-control">
 				<option value="0">Category</option>
