@@ -28,7 +28,8 @@ class HomeController extends BaseController {
         $page = Input::get('page', 1);
 		$pagiData = $this->article->byPage($page);
 		$articles = Paginator::make($pagiData->items, $pagiData->totalItems, 10);
-		return View::make('front.index')->with('articles', $articles);
+        $imgnumber = mt_rand(1, 5);
+		return View::make('front.index')->with(compact('articles', 'imgnumber'));
 	}
 
 	public function showArticle($slug)

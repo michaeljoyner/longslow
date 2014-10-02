@@ -42,14 +42,14 @@
 .title-image-container {
   width: 100%;
   height: 26em;
-  background: url("../../../images/lowly.jpg") no-repeat;
+//  background: url("../../../images/morning.jpg") no-repeat;
   background-size: cover;
-  background-position-y: 25%;
+//  background-position-y: 25%;
   margin-top: 20em;
   transition: 1s;
   position: fixed;
   pointer-events: none;
-  @include respond-to(phone) {height: 16em;}
+  @include respond-to(phone) {height: 16em; margin-top: 15em; background-position-x: 50%;}
 }
 
 .scrolled .title-image-container {
