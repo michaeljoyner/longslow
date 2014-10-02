@@ -6,22 +6,28 @@
    <style>
    .title-image-container {
         @if($imgnumber === 1)
-            background: url("../../../images/covers/morning.jpg") no-repeat;
+            background-image: url("../../../images/covers/morning.jpg");
+            background-repeat: no-repeat;
             background-position-y: 80%;
         @elseif ($imgnumber === 2)
-            background: url("../../../images/covers/cloudy.jpg") no-repeat;
+            background-image: url("../../../images/covers/cloudy.jpg");
+            background-repeat: no-repeat;
             background-position-y: 25%;
         @elseif($imgnumber === 3)
-            background: url("../../../images/covers/burnt.jpg") no-repeat;
+            background-image: url("../../../images/covers/burnt.jpg");
+            background-repeat: no-repeat;
             background-position-y: 25%;
         @elseif($imgnumber === 4)
-            background: url("../../../images/covers/bright.jpg") no-repeat;
+            background-image: url("../../../images/covers/bright.jpg");
+            background-repeat: no-repeat;
             background-position-y: 25%;
         @elseif($imgnumber === 5)
-            background: url("../../../images/covers/chilly.jpg") no-repeat;
+            background-image: url("../../../images/covers/chilly.jpg");
+            background-repeat: no-repeat;
             background-position-y: 25%;
         @elseif($imgnumber === 6)
-            background: url("../../../images/covers/lowly.jpg") no-repeat;
+            background-image: url("../../../images/covers/lowly.jpg");
+            background-repeat: no-repeat;
             background-position-y: 25%;
         @endif
    }

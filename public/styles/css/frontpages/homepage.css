@@ -104,7 +104,7 @@ a, a:visited {
   .title-image-container {
     height: 16em;
     margin-top: 15em;
-    background-position-x: 50%;
+    background-size: contain;
   }
 }
 
