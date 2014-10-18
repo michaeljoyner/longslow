@@ -50,4 +50,18 @@
 		</section>
 		</div>
 		<div class="page-footer"></div>
+		<script>
+			var images = document.querySelectorAll('.content-body img');
+			var i = 0, l = images.length;
+			for(i;i<l;i++) {
+				var text = images[i].getAttribute('alt');
+				if(text !== "" && text !== "enter image description here") {
+					var caption = document.createElement('caption');
+					caption.innerHTML = text;
+					images[i].parentNode.insertBefore(caption, images[i].nextSibling);
+					var style = window.getComputedStyle(images[i]);
+					caption.style.width = style.width;
+				}
+			}
+		</script>
 @stop
